@@ -1,0 +1,52 @@
+{
+  "info": {
+    "name": "Ecosistema E-commerce (via Gateway)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:9056" }
+  ],
+  "item": [
+    {
+      "name": "Crear producto",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Laptop\",\n  \"precio\": 2500000,\n  \"stock\": 10\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/productos", "host": ["{{baseUrl}}"], "path": ["api", "productos"] }
+      }
+    },
+    {
+      "name": "Listar productos",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/api/productos", "host": ["{{baseUrl}}"], "path": ["api", "productos"] }
+      }
+    },
+    {
+      "name": "Consultar producto por id",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/api/productos/1", "host": ["{{baseUrl}}"], "path": ["api", "productos", "1"] }
+      }
+    },
+    {
+      "name": "Crear pedido",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/pedidos?productoId=1&cantidad=2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "pedidos"],
+          "query": [
+            { "key": "productoId", "value": "1" },
+            { "key": "cantidad", "value": "2" }
+          ]
+        }
+      }
+    }
+  ]
+}

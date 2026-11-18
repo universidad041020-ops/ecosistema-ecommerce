@@ -5,10 +5,25 @@ spring:
   application:
     name: producto-service
   datasource:
-    url: jdbc:h2:mem:productodb
+    url: ${DB_URL:jdbc:h2:mem:productodb}
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:}
   h2:
     console:
       enabled: true
   jpa:
     hibernate:
       ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:9099/eureka}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
