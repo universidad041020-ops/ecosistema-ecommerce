@@ -231,7 +231,27 @@ ecosistema-ecommerce/
 └── pedido-service/       Dockerfile
 
 ```
+## Problemas frecuentes
 
+**El build se cae o Docker se reinicia (equipos con 8 GB de RAM).** Compilar los cuatro servicios en paralelo puede agotar la memoria. Construir de uno en uno:
+
+```
+docker compose build eureka-server
+docker compose build api-gateway
+docker compose build producto-service
+docker compose build pedido-service
+docker compose up -d
+```
+
+Si Docker Desktop usa WSL2, limitar su memoria en `%UserProfile%\.wslconfig`:
+
+```
+[wsl2]
+memory=5GB
+swap=6GB
+```
+
+Luego ejecutar `wsl --shutdown` y abrir Docker Desktop de nuevo.
 
 
 
